@@ -62,18 +62,18 @@ The lab consists of three main network layers:
 ### Deployment
 
 1. **Clone the repository:**
-```bash
+```ini
 git clone <repository-url>
 cd srv6_lab
 ```
 
 2. **Deploy the topology:**
-```bash
+```ini
 containerlab deploy
 ```
 
 3. **Verify deployment:**
-```bash
+```ini
 containerlab inspect
 ```
 
@@ -103,20 +103,20 @@ The lab includes comprehensive monitoring capabilities:
 
 ### Useful SRv6 commands
 For classic SID
-```c
+```cpp
 /show router isis 1 segment-routing-v6 locator
 /show router segment-routing-v6 local-sid
 /show router isis segment-routing-v6 locator
 ```
 
 For micro-SID (uSID or Next-CSID)
-```c
+```cpp
 /show router segment-routing-v6 micro-segment-locator 
 /show router segment-routing-v6 micro-segment-local-sid
 /show router isis 1 segment-routing-v6 micro-segment-locator 
 ```
 
-```c
+```cpp
 /show fwd-path-ext fpe 1
 /show router route-table ipv6 2001:ac8:0:b::/64 
 /show router tunnel-table ipv6 2001:ac8:0:b::/64
@@ -151,10 +151,17 @@ This showcases how service providers can evolve their networks while maintaining
 - Connectivity test between tester1 (IP 192.168.0.1, VLAN 10) and tester14 (IP 192.168.0.14, VLAN 10)
 ### 3. Intra-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R13-R16_VPWS-SRv6
-- 
+- Summarization on ASBR nodes R11 and R12
+- Connectivity test between tester13 (IP 10.13.16.13, VLAN 1316) and tester16 (IP 10.13.16.16, VLAN 1316)
 ### 4. Inter-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R05-R16_VPWS-SRv6
-- Connectivity between tester5 (IP 192.168.0.5) and tester16 (IP 192.168.0.16)
+- Summarization on ASBR nodes R11 and R12
+- Connectivity between tester5 (IP 10.5.16.5, VLAN 516) and tester16 (IP 10.5.16.16, VLAN 516)
+### 5. Inter-domain RSVP to SRv6 ELINE
+- epipe R04-R13_VPWS-SRv6
+- RSVP-based LSP/SDP with T-LDP epipe on access ring 1 from R04 to both ASBR nodes R05/R06
+- SRv6 from ASBR nodes R05 and R06 to R13
+- Connecitivy between tester4 (IP 10.4.13.4, VLAN 413) and tester13 (IP 10.4.13.13, VLAN 413)
 
 ## Project Structure
 

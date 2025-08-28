@@ -25,7 +25,7 @@ topology:
       env:
         NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
         NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
-      # startup-config: ./config/R01-IXR.cfg
+      startup-config: ./config/R01-IXR.cfg
       mgmt-ipv4: 172.20.20.101
       ports:
         - 50101:22
@@ -34,7 +34,7 @@ topology:
     R02-IXR: #IXR-e2
       kind: nokia_srsim
       type: ixr-e2   
-      # startup-config: ./config/R02-IXR.cfg
+      startup-config: ./config/R02-IXR.cfg
       mgmt-ipv4: 172.20.20.102
       ports:
         - 50201:22
@@ -46,7 +46,7 @@ topology:
       env:
         NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
         NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
-      # startup-config: ./config/R03-IXR.cfg
+      startup-config: ./config/R03-IXR.cfg
       mgmt-ipv4: 172.20.20.103
       ports:
         - 50301:22
@@ -58,7 +58,7 @@ topology:
       env:
         NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
         NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
-      # startup-config: ./config/R04-IXR.cfg
+      startup-config: ./config/R04-IXR.cfg
       mgmt-ipv4: 172.20.20.104
       ports:
         - 50401:22
@@ -68,7 +68,7 @@ topology:
     R05-SR: #SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R05-SR.cfg
+      startup-config: ./config/R05-SR.cfg
       mgmt-ipv4: 172.20.20.105
       ports:
         - 50501:22
@@ -77,7 +77,7 @@ topology:
     R06-SR: #SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R06-SR.cfg
+      startup-config: ./config/R06-SR.cfg
       mgmt-ipv4: 172.20.20.106
       ports:
         - 50601:22
@@ -86,7 +86,7 @@ topology:
     R07-SR: #SR-1
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R07-SR.cfg
+      startup-config: ./config/R07-SR.cfg
       mgmt-ipv4: 172.20.20.107
       ports:
         - 50701:22
@@ -95,7 +95,7 @@ topology:
     R08-SR: #SR-1
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R08-SR.cfg
+      startup-config: ./config/R08-SR.cfg
       mgmt-ipv4: 172.20.20.108
       ports:
         - 50801:22
@@ -104,7 +104,7 @@ topology:
     R09-SR: #SR-1
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R09-SR.cfg
+      startup-config: ./config/R09-SR.cfg
       mgmt-ipv4: 172.20.20.109
       ports:
         - 50901:22
@@ -113,7 +113,7 @@ topology:
     R10-SR: #SR-1
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R10-SR.cfg
+      startup-config: ./config/R10-SR.cfg
       mgmt-ipv4: 172.20.20.110
       ports:
         - 51001:22
@@ -122,7 +122,7 @@ topology:
     R11-SR: #SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R11-SR.cfg
+      startup-config: ./config/R11-SR.cfg
       mgmt-ipv4: 172.20.20.111
       ports:
         - 51101:22
@@ -131,7 +131,7 @@ topology:
     R12-SR: #SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
-      # startup-config: ./config/R12-SR.cfg
+      startup-config: ./config/R12-SR.cfg
       mgmt-ipv4: 172.20.20.112
       ports:
         - 51201:22
@@ -147,27 +147,16 @@ topology:
           env:
             NOKIA_SROS_CARD: iom-ixr-r6d
             NOKIA_SROS_MDA_1: m5-100g-qsfp28
-      # startup-config: ./config/R13-IXR.cfg
+      startup-config: ./config/R13-IXR.cfg
       mgmt-ipv4: 172.20.20.113
       ports: 
         - 51301:22
         - 51302:57400
         - 51303:830
-    # R13-IXR: #IXR-R6d
-    #   kind: nokia_sros
-    #   type: >-
-    #       cp: cpu=2 ram=4 chassis=ixr-r6d slot=A card=cpm-ixr-r6d/iom-ixr-r6d ___
-    #       lc: cpu=4 ram=6 chassis=ixr-r6d slot=1 card=cpm-ixr-r6d/iom-ixr-r6d mda/1=m5-100g-qsfp28
-    #   startup-config: ./config/R13-IXR.cfg
-    #   mgmt-ipv4: 172.20.20.113
-    #   ports: 
-    #     - 51301:22
-    #     - 51302:57400
-    #     - 51303:830
     R14-IXR: #IXR-e2
       kind: nokia_srsim
       type: ixr-e2
-      # startup-config: ./config/R14-IXR.cfg
+      startup-config: ./config/R14-IXR.cfg
       mgmt-ipv4: 172.20.20.114
       ports:
         - 51401:22
@@ -182,7 +171,7 @@ topology:
           env:
             NOKIA_SROS_CARD: iom-ixr-r6d
             NOKIA_SROS_MDA_1: m5-100g-qsfp28
-      # startup-config: ./config/R15-IXR.cfg
+      startup-config: ./config/R15-IXR.cfg
       mgmt-ipv4: 172.20.20.115
       ports:
         - 51501:22
@@ -191,7 +180,7 @@ topology:
     R16-IXR: #IXR-e2
       kind: nokia_srsim
       type: ixr-e2
-      # startup-config: ./config/R16-IXR.cfg
+      startup-config: ./config/R16-IXR.cfg
       mgmt-ipv4: 172.20.20.116
       ports:
         - 51601:22
