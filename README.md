@@ -63,7 +63,7 @@ The lab consists of three main network layers:
 
 1. **Clone the repository:**
 ```ini
-git clone <repository-url>
+git clone https://github.com/giancarlo3g/srv6_lab.git
 cd srv6_lab
 ```
 
