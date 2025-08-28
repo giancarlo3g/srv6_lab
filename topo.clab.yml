@@ -220,14 +220,16 @@ topology:
       kind: linux
       mgmt-ipv4: 172.20.20.123
       exec:
-        - ifconfig eth1 192.168.0.4
-        - ifconfig eth1 netmask 255.255.255.0
+        - ip link add link eth1 name eth1.413 type vlan id 413
+        - ifconfig eth1.413 10.4.13.4
+        - ifconfig eth1.413 netmask 255.255.255.0
     tester5:
       kind: linux
       mgmt-ipv4: 172.20.20.124
       exec:
-        - ifconfig eth1 192.168.0.5
-        - ifconfig eth1 netmask 255.255.255.0
+        - ip link add link eth1 name eth1.516 type vlan id 516
+        - ifconfig eth1.516 10.5.16.5
+        - ifconfig eth1.516 netmask 255.255.255.0
     tester11:
       kind: linux
       mgmt-ipv4: 172.20.20.125
@@ -238,8 +240,12 @@ topology:
       kind: linux
       mgmt-ipv4: 172.20.20.126
       exec:
-        - ifconfig eth1 192.168.0.13
-        - ifconfig eth1 netmask 255.255.255.0
+        - ip link add link eth1 name eth1.413 type vlan id 413
+        - ip link add link eth1 name eth1.1316 type vlan id 1316
+        - ifconfig eth1.413 10.4.13.13
+        - ifconfig eth1.413 netmask 255.255.255.0
+        - ifconfig eth1.1316 10.13.16.13
+        - ifconfig eth1.1316 netmask 255.255.255.0
     tester14:
       kind: linux
       mgmt-ipv4: 172.20.20.127
@@ -251,8 +257,12 @@ topology:
       kind: linux
       mgmt-ipv4: 172.20.20.128
       exec:
-        - ifconfig eth1 192.168.0.16
-        - ifconfig eth1 netmask 255.255.255.0
+        - ip link add link eth1 name eth1.516 type vlan id 516
+        - ip link add link eth1 name eth1.1316 type vlan id 1316
+        - ifconfig eth1.516 10.5.16.16
+        - ifconfig eth1.516 netmask 255.255.255.0
+        - ifconfig eth1.1316 10.13.16.16
+        - ifconfig eth1.1316 netmask 255.255.255.0
 
 #################################################################################################################################################
 #Telemetry 
