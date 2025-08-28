@@ -1,0 +1,36 @@
+
+7750 side
+
+/configure router "Base" isis 1 advertise-router-capability as
+/configure router "Base" isis 1 ipv6-routing native
+/configure router "Base" isis 1 segment-routing-v6 admin-state enable
+/configure router "Base" isis 1 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level-capability 1
+/configure router "Base" isis 1 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level 1 metric 1
+
+
+==============================================================================================================
+
+7250
+
+/configure router "Base" isis 1 ipv6-routing native
+/configure router "Base" isis 1 multi-topology ipv6-unicast true
+
+
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block-length 32 # IXR supports only 32
+/configure router "Base" segment-routing segment-routing-v6 micro-segment global-sid-entries 56
+/configure router "Base" segment-routing segment-routing-v6 micro-segment sid-length 16
+
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" admin-state enable # no FPE is needed
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" prefix ip-prefix 2001:ac9::/32
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" static-function max-entries 16
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" admin-state enable
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" block "SRv6-uSID-Alg0"
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" un value 13
+ /configure router "Base" segment-routing segment-routing-v6 source-address 2001:ac9:d::1
+/configure router "Base" segment-routing { segment-routing-v6 base-routing-instance micro-segment-locator "uSID-Alg0-Locator" function ua-auto-allocate psp protection protected }
+/configure router "Base" isis 1 advertise-router-capability as
+/configure router "Base" isis 1 segment-routing-v6 admin-state enable
+/configure router "Base" isis 1 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level-capability 1
+/configure router "Base" isis 1 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level 1 metric 1
+
+

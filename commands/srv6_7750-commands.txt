@@ -1,0 +1,102 @@
+Basic FPE config for 7750
+
+/configure card 1 card-type iom-1
+/configure card 1 { mda 1 xconnect mac 1 loopback 1 }
+/configure port 1/1/m1/1 admin-state enable
+/configure port-xc pxc 1 admin-state enable
+/configure port-xc pxc 1 port-id 1/1/m1/1
+/configure port-xc pxc 2 admin-state enable
+/configure port-xc pxc 2 port-id 1/1/m1/1
+/configure fwd-path-ext fpe 1 path pxc 1
+/configure fwd-path-ext fpe 1 application srv6 type origination
+/configure fwd-path-ext fpe 2 path pxc 2
+/configure fwd-path-ext fpe 2 application srv6 type termination 
+/configure port pxc-1.a admin-state enable
+/configure port pxc-1.b admin-state enable
+/configure port pxc-2.a admin-state enable
+/configure port pxc-2.b admin-state enable
+
+OR group
+
+(gl)[/configure groups group "SRv6-7750"]
+A:admin@R07_SR-1# info full-context 
+    /configure groups group "SRv6-7750" card 1 card-type iom-1
+    /configure groups group "SRv6-7750" card 1 { mda 1 xconnect mac 1 loopback 1 }
+    /configure groups group "SRv6-7750" fwd-path-ext fpe 1 path pxc 1
+    /configure groups group "SRv6-7750" fwd-path-ext fpe 1 application srv6 type origination
+    /configure groups group "SRv6-7750" fwd-path-ext fpe 2 path pxc 2
+    /configure groups group "SRv6-7750" fwd-path-ext fpe 2 application srv6 type termination
+    /configure groups group "SRv6-7750" port pxc-1.a admin-state enable
+    /configure groups group "SRv6-7750" port pxc-1.b admin-state enable
+    /configure groups group "SRv6-7750" port pxc-2.a admin-state enable
+    /configure groups group "SRv6-7750" port pxc-2.b admin-state enable
+    /configure groups group "SRv6-7750" port 1/1/m1/1 admin-state enable
+    /configure groups group "SRv6-7750" port-xc pxc 1 admin-state enable
+    /configure groups group "SRv6-7750" port-xc pxc 1 port-id 1/1/m1/1
+    /configure groups group "SRv6-7750" port-xc pxc 2 admin-state enable
+    /configure groups group "SRv6-7750" port-xc pxc 2 port-id 1/1/m1/1
+/configure apply-groups ["SRv6-7750"]
+
+
+ISIS MT0 must be used
+# by default, locators are added in MTO (ipv6-routing native)
+/configure router "Base" isis 0 ipv6-routing native
+/configure router "Base" isis 0 multi-topology ipv6-unicast true
+
+===========================================================================================================================
+REGULAR SRv6
+
+Locator configuration per node
+
+/configure router "Base" segment-routing segment-routing-v6 origination-fpe [1]
+/configure router "Base" segment-routing segment-routing-v6 source-address 2001:db8:0:7::1
+/configure router "Base" segment-routing segment-routing-v6 locator "Alg0-Locator" admin-state enable
+/configure router "Base" segment-routing segment-routing-v6 locator "Alg0-Locator" block-length 48
+/configure router "Base" segment-routing segment-routing-v6 locator "Alg0-Locator" termination-fpe [2]
+/configure router "Base" segment-routing segment-routing-v6 locator "Alg0-Locator" prefix ip-prefix 2001:db8:0:7::/64
+/configure router "Base" segment-routing segment-routing-v6 base-routing-instance locator "Alg0-Locator" function end 1 srh-mode usp
+/configure router "Base" segment-routing segment-routing-v6 base-routing-instance { locator "Alg0-Locator" function end-x-auto-allocate usp protection protected }
+
+ISIS advertisement of the locator
+
+/configure router "Base" isis 0 advertise-router-capability as
+/configure router "Base" isis 0 segment-routing-v6 admin-state enable
+/configure router "Base" isis 0 segment-routing-v6 locator "Alg0-Locator" level-capability 2
+/configure router "Base" isis 0 segment-routing-v6 locator "Alg0-Locator" level 2 metric 1
+
+
+===========================================================================================================================
+SRv6 with uSID
+
+/configure router "Base" mpls-labels reserved-label-block "SRv6-uSID-Alg0" start-label 30000
+/configure router "Base" mpls-labels reserved-label-block "SRv6-uSID-Alg0" end-label 38191
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block-length 48
+/configure router "Base" segment-routing segment-routing-v6 micro-segment global-sid-entries 56
+/configure router "Base" segment-routing segment-routing-v6 micro-segment sid-length 16
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" admin-state enable
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" termination-fpe [2]
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" label-block "SRv6-uSID-Alg0"
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" prefix ip-prefix 2001:ac8::/48
+/configure router "Base" segment-routing segment-routing-v6 micro-segment block "SRv6-uSID-Alg0" static-function max-entries 16
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" admin-state enable
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" block "SRv6-uSID-Alg0"
+/configure router "Base" segment-routing segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" un value 5
+/configure router "Base" segment-routing { segment-routing-v6 base-routing-instance micro-segment-locator "uSID-Alg0-Locator" function ua-auto-allocate psp protection protected }
+/configure router "Base" isis 0 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level-capability 2
+/configure router "Base" isis 0 segment-routing-v6 micro-segment-locator "uSID-Alg0-Locator" level 2 metric 1
+
+
+/show router isis 1 segment-routing-v6 locator
+/show router segment-routing-v6 local-sid
+/show router isis segment-routing-v6 locator
+
+/show router segment-routing-v6 micro-segment-locator 
+/show router segment-routing-v6 micro-segment-local-sid
+/show router isis 1 segment-routing-v6 micro-segment-locator 
+
+/show fwd-path-ext fpe 1
+/show router route-table ipv6 2001:ac8:0:b::/64 
+/show router tunnel-table ipv6 2001:ac8:0:b::/64
+/show router tunnel-table ipv6 2001:ac8:0:b::/64 alternative 
+/show router fib 1 ipv6 ip-prefix-prefix-length 2001:ac8:0:b::/64
+/show router bgp routes 172.31.3.0/24 vpn-ipv4 detail
