@@ -51,6 +51,7 @@ The lab consists of three main network layers:
 - **PW-switching**: PW switching for legacy deployment using a PW per domain stitched at the ASBR
 - **gNMI**: Network configuration and telemetry
 - **Prometheus + Grafana**: Monitoring and visualization
+- **UPA**: prefix summarization for SRv6 locators including Unreachable Prefix Announcement (UPA)
 
 ## C. Getting Started
 
@@ -166,6 +167,7 @@ This showcases how service providers can evolve their networks while maintaining
 ### Configuration
 1. [7750 SR](srv6_7750.md)
 2. [7250 IXR](srv6_7250.md)
+3. [Summarization & UPA](upa.md)
 
 ## Project Structure
 
