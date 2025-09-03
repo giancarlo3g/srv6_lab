@@ -173,44 +173,22 @@ This showcases how service providers can evolve their networks while maintaining
 
 ```
 srv6_lab/
-├── topo.clab.yml              # Main topology file
-├── .srv6.topo.clab.yml.bak    # Backup topology file
+├── topo.clab.yml               # Main topology file
 ├── topology/                   # Network diagrams
-│   ├── Topology.png           # High-level topology
-│   └── detailed_topology.png  # Port-level details
+│   ├── Topology.png            # High-level topology
+│   └── detailed_topology.png   # Port-level details
 ├── config/                     # Node configurations
-│   ├── R01-IXR.cfg           # R01-IXR configuration
-│   ├── R02-IXR.cfg           # R02-IXR configuration
-│   ├── R03-IXR.cfg           # R03-IXR configuration
-│   ├── R04-IXR.cfg           # R04-IXR configuration
-│   ├── R05-SR.cfg            # R05-SR configuration
-│   ├── R06-SR.cfg            # R06-SR configuration
-│   ├── R07-SR.cfg            # R07-SR configuration
-│   ├── R08-SR.cfg            # R08-SR configuration
-│   ├── R09-SR.cfg            # R09-SR configuration
-│   ├── R10-SR.cfg            # R10-SR configuration
-│   ├── R11-SR.cfg            # R11-SR configuration
-│   ├── R12-SR.cfg            # R12-SR configuration
-│   ├── R13-IXR.cfg           # R13-IXR configuration
-│   ├── R14-IXR.cfg           # R14-IXR configuration
-│   ├── R15-IXR.cfg           # R15-IXR configuration
-│   └── R16-IXR.cfg           # R16-IXR configuration
-├── config-old/                 # Previous configuration versions
-├── startup_config/             # Startup configurations
-├── tele-config/               # Telemetry configurations
-│   ├── gnmic.yaml            # gNMIc configuration
-│   ├── grafana/              # Grafana configuration
-│   │   ├── dashboards.yml    # Dashboard definitions
-│   │   ├── dashboards/       # Dashboard JSON files
-│   │   └── datasources/      # Data source configurations
-│   └── prometheus/           # Prometheus configuration
-├── clab-srv6/                 # Containerlab artifacts
-├── commands/                  # Command reference files
-├── srv6_7250.md              # 7250 IXR configuration guide
-├── srv6_7750.md              # 7750 SR configuration guide
-├── save_config.sh             # Configuration backup script
-├── .gitignore                 # Git ignore file
-└── README.md                  # This file
+├── tele-config/                # Telemetry configurations
+│   ├── gnmic.yaml              # gNMIc configuration
+│   ├── grafana/                # Grafana configuration
+│   └── prometheus/             # Prometheus configuration
+├── commands/                   # Command reference files
+├── srv6_7250.md                # 7250 IXR configuration guide
+├── srv6_7750.md                # 7750 SR configuration guide
+├── upa.md                      # UPA and prefix summarization configuration guide
+├── save_config.sh              # Configuration backup script
+├── .gitignore                  # Git ignore file
+└── README.md                   # This file
 ```
 
 ## Contributing
