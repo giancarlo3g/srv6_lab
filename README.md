@@ -89,7 +89,7 @@ All nodes are accessible via SSH on the following ports:
 
 ### Configuration
 
-- **Node Configs**: Located in `./config/` directory
+- **Node Configs**: Located in `./startup_config/` directory
 - **Telemetry Configs**: Located in `./tele-config/` directory
 - **Topology File**: `topo.clab.yml` (main deployment file)
 
@@ -177,8 +177,8 @@ srv6_lab/
 ├── topology/                   # Network diagrams
 │   ├── Topology.png            # High-level topology
 │   └── detailed_topology.png   # Port-level details
-├── config/                     # Node configurations
-├── tele-config/                # Telemetry configurations
+├── startup_config/              # Node startup configurations
+├── tele-config/                 # Telemetry configurations
 │   ├── gnmic.yaml              # gNMIc configuration
 │   ├── grafana/                # Grafana configuration
 │   └── prometheus/             # Prometheus configuration
@@ -186,7 +186,7 @@ srv6_lab/
 ├── srv6_7250.md                # 7250 IXR configuration guide
 ├── srv6_7750.md                # 7750 SR configuration guide
 ├── upa.md                      # UPA and prefix summarization configuration guide
-├── save_config.sh              # Configuration backup script
+├── save_config.sh               # Configuration backup script
 ├── .gitignore                  # Git ignore file
 └── README.md                   # This file
 ```
