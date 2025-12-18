@@ -1,25 +1,16 @@
 name: srv6
 prefix: ""
 
-mgmt:
-  network: net3         # management network name
-  ipv4-subnet: 172.20.20.0/24       # ipv4 range
-
 topology:
-  defaults:
-    kind: nokia_sros
   kinds:
-    nokia_sros:
-      image: registry.srlinux.dev/pub/nokia_sros:24.10.R1
-      license: ../license-sros24.txt
     nokia_srsim:
       image: registry.srlinux.dev/pub/nokia_srsim:25.7.R1
       license: ../license-srsim25.txt
     linux:
       image: ghcr.io/mfzhsn/network-multitool-sshd:0.0.2
   nodes:
-  # Ring-1: RSVP access ring
-    R01-IXR: #IXR-R6
+    # Ring-1: RSVP access ring
+    R01-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
       env:
@@ -30,17 +21,17 @@ topology:
       ports:
         - 50101:22
         - 50102:57400
-        - 50103:830  
-    R02-IXR: #IXR-e2
+        - 50103:830
+    R02-IXR: # IXR-e2
       kind: nokia_srsim
-      type: ixr-e2   
+      type: ixr-e2
       startup-config: ./startup_config/R02-IXR.partial.txt
       mgmt-ipv4: 172.20.20.102
       ports:
         - 50201:22
         - 50202:57400
         - 50203:830
-    R03-IXR: #IXR-R6
+    R03-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
       env:
@@ -65,7 +56,7 @@ topology:
         - 50402:57400
         - 50403:830
     # Core SRv6
-    R05-SR: #SR-1 (ASBR)
+    R05-SR: # SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R05-SR.partial.txt
@@ -74,7 +65,7 @@ topology:
         - 50501:22
         - 50502:57400
         - 50503:830
-    R06-SR: #SR-1 (ASBR)
+    R06-SR: # SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R06-SR.partial.txt
@@ -83,7 +74,7 @@ topology:
         - 50601:22
         - 50602:57400
         - 50603:830
-    R07-SR: #SR-1
+    R07-SR: # SR-1
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R07-SR.partial.txt
@@ -92,7 +83,7 @@ topology:
         - 50701:22
         - 50702:57400
         - 50703:830
-    R08-SR: #SR-1
+    R08-SR: # SR-1
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R08-SR.partial.txt
@@ -101,7 +92,7 @@ topology:
         - 50801:22
         - 50802:57400
         - 50803:830
-    R09-SR: #SR-1
+    R09-SR: # SR-1
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R09-SR.partial.txt
@@ -110,7 +101,7 @@ topology:
         - 50901:22
         - 50902:57400
         - 50903:830
-    R10-SR: #SR-1
+    R10-SR: # SR-1
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R10-SR.partial.txt
@@ -119,7 +110,7 @@ topology:
         - 51001:22
         - 51002:57400
         - 51003:830
-    R11-SR: #SR-1 (ASBR)
+    R11-SR: # SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R11-SR.partial.txt
@@ -128,7 +119,7 @@ topology:
         - 51101:22
         - 51102:57400
         - 51103:830
-    R12-SR: #SR-1 (ASBR)
+    R12-SR: # SR-1 (ASBR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R12-SR.partial.txt
@@ -138,7 +129,7 @@ topology:
         - 51202:57400
         - 51203:830
     # Ring-2: SRv6 access ring
-    R13-IXR: #IXR-R6d
+    R13-IXR: # IXR-R6d
       kind: nokia_srsim
       type: ixr-r6d
       components:
@@ -149,11 +140,11 @@ topology:
             NOKIA_SROS_MDA_1: m5-100g-qsfp28
       startup-config: ./startup_config/R13-IXR.partial.txt
       mgmt-ipv4: 172.20.20.113
-      ports: 
+      ports:
         - 51301:22
         - 51302:57400
         - 51303:830
-    R14-IXR: #IXR-e2
+    R14-IXR: # IXR-e2
       kind: nokia_srsim
       type: ixr-e2
       startup-config: ./startup_config/R14-IXR.partial.txt
@@ -162,7 +153,7 @@ topology:
         - 51401:22
         - 51402:57400
         - 51403:830
-    R15-IXR: #IXR-R6d
+    R15-IXR: # IXR-R6d
       kind: nokia_srsim
       type: ixr-r6d
       components:
@@ -177,7 +168,7 @@ topology:
         - 51501:22
         - 51502:57400
         - 51503:830
-    R16-IXR: #IXR-e2
+    R16-IXR: # IXR-e2
       kind: nokia_srsim
       type: ixr-e2
       startup-config: ./startup_config/R16-IXR.partial.txt
@@ -185,14 +176,14 @@ topology:
       ports:
         - 51601:22
         - 51602:57400
-        - 51603:830  
+        - 51603:830
     tester1:
       kind: linux
       mgmt-ipv4: 172.20.20.120
       exec:
         - ip link add link eth1 name eth1.10 type vlan id 10
         - ifconfig eth1.10 192.168.0.1
-        - ifconfig eth1.10 netmask 255.255.255.0 
+        - ifconfig eth1.10 netmask 255.255.255.0
     tester2:
       kind: linux
       mgmt-ipv4: 172.20.20.121
@@ -253,16 +244,15 @@ topology:
         - ifconfig eth1.1316 10.13.16.16
         - ifconfig eth1.1316 netmask 255.255.255.0
 
-#################################################################################################################################################
-#Telemetry 
-#################################################################################################################################################
+    #################################################################################################################################################
+    #Telemetry
+    #################################################################################################################################################
     gnmic:
       kind: linux
       image: ghcr.io/openconfig/gnmic
       mgmt-ipv4: 172.20.20.150
       binds:
         - ./tele-config/gnmic.yaml:/app/gnmic.yaml:ro
-        - /var/run/docker.sock:/var/run/docker.sock
       cmd: "--config /app/gnmic.yaml --log subscribe"
 
     consul-agent:
@@ -298,10 +288,10 @@ topology:
         - ./tele-config/grafana/dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
         - ./tele-config/grafana/dashboards:/var/lib/grafana/dashboards
       ports:
-        - 3000:3000 
+        - 3000:3000
 
   links:
-  #Connections
+    #Connections
     - endpoints: ["R01-IXR:1/1/5", "R02-IXR:1/1/c3/1"]
     - endpoints: ["R01-IXR:1/2/c7/1", "R03-IXR:1/2/c7/1"]
     - endpoints: ["R01-IXR:1/1/1", "tester1:eth1"]

@@ -1,15 +1,3 @@
-# Copyright 2023 Nokia
-# Licensed under the BSD 3-Clause License.
-# SPDX-License-Identifier: BSD-3-Clause
-
-# © 2022 Nokia.
-#
-# This code is a Contribution to the gNMIc project (“Work”) made under the Google Software Grant and Corporate Contributor License Agreement (“CLA”) and governed by the Apache License 2.0.
-# No other rights or licenses in or to any of Nokia’s intellectual property are granted for any other purpose.
-# This code is provided on an “as is” basis without any warranties of any kind.
-#
-# SPDX-License-Identifier: Apache-2.0
-
 username: admin
 password: NokiaSros1!
 insecure: true
@@ -17,7 +5,7 @@ encoding: json_ietf
 log: true
 
 targets:
-  #SROS
+  # SROS
   R01-IXR:57400:
   R02-IXR:57400:
   R03-IXR:57400:
@@ -46,14 +34,14 @@ subscriptions:
       - /state/oam-pm
     stream-mode: sample
     sample-interval: 10s
-  
-outputs:     
+
+outputs:
   prom-output:
     type: prometheus
     listen: "gnmic:9804"
     strings-as-labels: true
     service-registration:
-      address:  consul-agent:8500
+      address: consul-agent:8500
     event-processors:
       - up-down-map
 
