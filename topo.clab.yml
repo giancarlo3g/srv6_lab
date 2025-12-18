@@ -4,7 +4,7 @@ prefix: ""
 topology:
   kinds:
     nokia_srsim:
-      image: registry.srlinux.dev/pub/nokia_srsim:25.7.R1
+      image: nokia_srsim:25.7.R1
       license: ../license-srsim25.txt
     linux:
       image: ghcr.io/mfzhsn/network-multitool-sshd:0.0.2
