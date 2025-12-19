@@ -13,9 +13,12 @@ topology:
     R01-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R01-IXR.partial.txt
       mgmt-ipv4: 172.20.20.101
       ports:
@@ -34,9 +37,12 @@ topology:
     R03-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R03-IXR.partial.txt
       mgmt-ipv4: 172.20.20.103
       ports:
@@ -46,9 +52,12 @@ topology:
     R04-IXR: #IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R04-IXR.partial.txt
       mgmt-ipv4: 172.20.20.104
       ports:
@@ -134,10 +143,12 @@ topology:
       type: ixr-r6d
       components:
         - slot: A
+          type: cpiom-ixr-r6d
         - slot: 1
-          env:
-            NOKIA_SROS_CARD: iom-ixr-r6d
-            NOKIA_SROS_MDA_1: m5-100g-qsfp28
+          type: iom-ixr-r6d
+          mda:
+            - slot: 1
+              type: m5-100g-qsfp28
       startup-config: ./startup_config/R13-IXR.partial.txt
       mgmt-ipv4: 172.20.20.113
       ports:
@@ -158,10 +169,12 @@ topology:
       type: ixr-r6d
       components:
         - slot: A
+          type: cpiom-ixr-r6d
         - slot: 1
-          env:
-            NOKIA_SROS_CARD: iom-ixr-r6d
-            NOKIA_SROS_MDA_1: m5-100g-qsfp28
+          type: iom-ixr-r6d
+          mda:
+            - slot: 1
+              type: m5-100g-qsfp28
       startup-config: ./startup_config/R15-IXR.partial.txt
       mgmt-ipv4: 172.20.20.115
       ports:
