@@ -221,13 +221,16 @@ topology:
       mgmt-ipv4: 172.20.20.124
       exec:
         - ip link add link eth1 name eth1.516 type vlan id 516
+        - ip link add link eth1 name eth1.511 type vlan id 511
         - ifconfig eth1.516 10.5.16.5
         - ifconfig eth1.516 netmask 255.255.255.0
+        - ifconfig eth1.511 10.5.11.5
+        - ifconfig eth1.511 netmask 255.255.255.0
     tester11:
       kind: linux
       mgmt-ipv4: 172.20.20.125
       exec:
-        - ifconfig eth1 192.168.0.11
+        - ifconfig eth1 10.5.11.11
         - ifconfig eth1 netmask 255.255.255.0
     tester13:
       kind: linux

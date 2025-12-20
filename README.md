@@ -144,25 +144,30 @@ This showcases how service providers can evolve their networks while maintaining
 
 ### 1. Intra-domain RSVP-based ELINE: 
 - epipe (T-LDP) R2-R3_2000
-- Connectivity test between tester1 (IP 192.168.0.1, VLAN 10) and tester14 (IP 192.168.0.14, VLAN 10)
+- Connectivity test between tester2 (IP 192.168.0.2, VLAN 10) and tester3 (IP 192.168.0.3, VLAN 10)
+- Use `docker exec -it tester2 bash` or `docker exec -it tester3 bash`
 ### 2. Inter-domain RSVP-based ELINE with PW-switching
 - epipe (T-LDP) R1-R14_3000
 - RSVP-based LSP/SDP per domain stitched at ASBR
 - Includes PW-redundancy from R01 to both ASBR R05/R06
 - Connectivity test between tester1 (IP 192.168.0.1, VLAN 10) and tester14 (IP 192.168.0.14, VLAN 10)
+- Use `docker exec -it tester1 bash` or `docker exec -it tester14 bash`
 ### 3. Intra-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R13-R16_VPWS-SRv6
 - Summarization on ASBR nodes R11 and R12
 - Connectivity test between tester13 (IP 10.13.16.13, VLAN 1316) and tester16 (IP 10.13.16.16, VLAN 1316)
+- Use `docker exec -it tester13 bash` or `docker exec -it tester16 bash`
 ### 4. Inter-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R05-R16_VPWS-SRv6
 - Summarization on ASBR nodes R11 and R12
 - Connectivity between tester5 (IP 10.5.16.5, VLAN 516) and tester16 (IP 10.5.16.16, VLAN 516)
+- Use `docker exec -it tester5 bash` or `docker exec -it tester16 bash`
 ### 5. Inter-domain RSVP to SRv6 ELINE
 - epipe R04-R13_VPWS-SRv6
 - RSVP-based LSP/SDP with T-LDP epipe on access ring 1 from R04 to both ASBR nodes R05/R06
 - SRv6 from ASBR nodes R05 and R06 to R13
 - Connecitivy between tester4 (IP 10.4.13.4, VLAN 413) and tester13 (IP 10.4.13.13, VLAN 413)
+- Use `docker exec -it tester4 bash` or `docker exec -it tester13 bash`
 
 ### Configuration
 1. [7750 SR](srv6_7750.md)
