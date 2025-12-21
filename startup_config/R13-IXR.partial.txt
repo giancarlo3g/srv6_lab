@@ -430,36 +430,6 @@ configure {
         }
     }
     service {
-        epipe "R1-R13_1000" {
-            admin-state enable
-            service-id 1000
-            customer "1"
-            service-mtu 1514
-            endpoint "remote" {
-                standby-signaling master
-            }
-            spoke-sdp 11:1000 {
-                control-word true
-                vc-type vlan
-                endpoint {
-                    name "remote"
-                    precedence primary
-                }
-                pw-status {
-                    signaling true
-                }
-            }
-            spoke-sdp 12:1000 {
-                control-word true
-                vc-type vlan
-                endpoint {
-                    name "remote"
-                }
-                pw-status {
-                    signaling true
-                }
-            }
-        }
         epipe "R04-R13_VPWS-SRv6" {
             admin-state enable
             service-id 413

@@ -375,49 +375,6 @@ configure {
         }
     }
     service {
-        epipe "R1-R2_2000" {
-            admin-state enable
-            service-id 2000
-            customer "1"
-            service-mtu 1514
-            spoke-sdp 2:2000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-        }
-        epipe "R1-R13_1000" {
-            admin-state enable
-            service-id 1000
-            customer "1"
-            service-mtu 1514
-            endpoint "remote" {
-                standby-signaling master
-            }
-            spoke-sdp 5:1000 {
-                control-word true
-                vc-type vlan
-                endpoint {
-                    name "remote"
-                    precedence primary
-                }
-                pw-status {
-                    signaling true
-                }
-            }
-            spoke-sdp 6:1000 {
-                control-word true
-                vc-type vlan
-                endpoint {
-                    name "remote"
-                }
-                pw-status {
-                    signaling true
-                }
-            }
-        }
         epipe "R1-R14_3000" {
             admin-state enable
             service-id 3000
@@ -509,6 +466,5 @@ configure {
                 }
             }
         }
-    }
     }
 }

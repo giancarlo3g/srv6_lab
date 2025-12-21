@@ -626,6 +626,8 @@ configure {
                     }
                 }
             }
+            sap 1/1/c4/1:511 {
+            }
             bgp-evpn {
                 evi 4
                 local-attachment-circuit "local-ac" {

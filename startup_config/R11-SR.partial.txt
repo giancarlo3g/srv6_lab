@@ -607,27 +607,6 @@ configure {
         }
     }
     service {
-        epipe "R1-R13_1000" {
-            admin-state enable
-            service-id 1000
-            customer "1"
-            vc-switching true
-            service-mtu 1514
-            spoke-sdp 5:1000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-            spoke-sdp 13:1000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-        }
         epipe "R1-R14_3000" {
             admin-state enable
             service-id 3000

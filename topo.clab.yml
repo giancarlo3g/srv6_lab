@@ -13,9 +13,12 @@ topology:
     R01-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R01-IXR.partial.txt
       mgmt-ipv4: 172.20.20.101
       ports:
@@ -34,9 +37,12 @@ topology:
     R03-IXR: # IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R03-IXR.partial.txt
       mgmt-ipv4: 172.20.20.103
       ports:
@@ -46,9 +52,12 @@ topology:
     R04-IXR: #IXR-R6
       kind: nokia_srsim
       type: ixr-r6
-      env:
-        NOKIA_SROS_MDA_1: m4-10g-sfp++1-100g-cfp2
-        NOKIA_SROS_MDA_2: m6-10g-sfp++1-100g-qsfp28
+      components:
+        - mda:
+          - slot: 1
+            type: m4-10g-sfp++1-100g-cfp2
+          - slot: 2
+            type: m6-10g-sfp++1-100g-qsfp28
       startup-config: ./startup_config/R04-IXR.partial.txt
       mgmt-ipv4: 172.20.20.104
       ports:
@@ -56,7 +65,7 @@ topology:
         - 50402:57400
         - 50403:830
     # Core SRv6
-    R05-SR: # SR-1 (ASBR)
+    R05-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R05-SR.partial.txt
@@ -65,7 +74,7 @@ topology:
         - 50501:22
         - 50502:57400
         - 50503:830
-    R06-SR: # SR-1 (ASBR)
+    R06-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R06-SR.partial.txt
@@ -110,7 +119,7 @@ topology:
         - 51001:22
         - 51002:57400
         - 51003:830
-    R11-SR: # SR-1 (ASBR)
+    R11-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R11-SR.partial.txt
@@ -119,7 +128,7 @@ topology:
         - 51101:22
         - 51102:57400
         - 51103:830
-    R12-SR: # SR-1 (ASBR)
+    R12-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R12-SR.partial.txt
@@ -134,10 +143,12 @@ topology:
       type: ixr-r6d
       components:
         - slot: A
+          type: cpiom-ixr-r6d
         - slot: 1
-          env:
-            NOKIA_SROS_CARD: iom-ixr-r6d
-            NOKIA_SROS_MDA_1: m5-100g-qsfp28
+          type: iom-ixr-r6d
+          mda:
+            - slot: 1
+              type: m5-100g-qsfp28
       startup-config: ./startup_config/R13-IXR.partial.txt
       mgmt-ipv4: 172.20.20.113
       ports:
@@ -158,10 +169,12 @@ topology:
       type: ixr-r6d
       components:
         - slot: A
+          type: cpiom-ixr-r6d
         - slot: 1
-          env:
-            NOKIA_SROS_CARD: iom-ixr-r6d
-            NOKIA_SROS_MDA_1: m5-100g-qsfp28
+          type: iom-ixr-r6d
+          mda:
+            - slot: 1
+              type: m5-100g-qsfp28
       startup-config: ./startup_config/R15-IXR.partial.txt
       mgmt-ipv4: 172.20.20.115
       ports:
@@ -208,13 +221,16 @@ topology:
       mgmt-ipv4: 172.20.20.124
       exec:
         - ip link add link eth1 name eth1.516 type vlan id 516
+        - ip link add link eth1 name eth1.511 type vlan id 511
         - ifconfig eth1.516 10.5.16.5
         - ifconfig eth1.516 netmask 255.255.255.0
+        - ifconfig eth1.511 10.5.11.5
+        - ifconfig eth1.511 netmask 255.255.255.0
     tester11:
       kind: linux
       mgmt-ipv4: 172.20.20.125
       exec:
-        - ifconfig eth1 192.168.0.11
+        - ifconfig eth1 10.5.11.11
         - ifconfig eth1 netmask 255.255.255.0
     tester13:
       kind: linux

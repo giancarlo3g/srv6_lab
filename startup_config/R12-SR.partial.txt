@@ -576,48 +576,6 @@ configure {
     service {
         customer "1" {
         }
-        epipe "R1-R13_1000" {
-            admin-state enable
-            service-id 1000
-            customer "1"
-            vc-switching true
-            service-mtu 1514
-            spoke-sdp 6:1000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-            spoke-sdp 13:1000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-        }
-        epipe "R1-R14_3000" {
-            admin-state enable
-            service-id 3000
-            customer "1"
-            vc-switching true
-            service-mtu 1514
-            spoke-sdp 6:3000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-            spoke-sdp 14:3000 {
-                control-word true
-                vc-type vlan
-                pw-status {
-                    signaling true
-                }
-            }
-        }
         sdp 5 {
             admin-state enable
             delivery-type mpls
@@ -649,6 +607,24 @@ configure {
                 ip-address 10.0.20.14
             }
             lsp "toR14" { }
+        }
+    }
+    system {
+        security {
+            user-params {
+                local-user {
+                    user "grpc" {
+                        password telemetry
+                        access {
+                            netconf true
+                            grpc true
+                        }
+                        console {
+                            member ["administrative"]
+                        }
+                    }
+                }
+            }
         }
     }
 }
