@@ -65,7 +65,7 @@ topology:
         - 50402:57400
         - 50403:830
     # Core SRv6
-    R05-SR: # SR-1 (ASBR)
+    R05-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R05-SR.partial.txt
@@ -74,7 +74,7 @@ topology:
         - 50501:22
         - 50502:57400
         - 50503:830
-    R06-SR: # SR-1 (ASBR)
+    R06-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R06-SR.partial.txt
@@ -119,7 +119,7 @@ topology:
         - 51001:22
         - 51002:57400
         - 51003:830
-    R11-SR: # SR-1 (ASBR)
+    R11-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R11-SR.partial.txt
@@ -128,7 +128,7 @@ topology:
         - 51101:22
         - 51102:57400
         - 51103:830
-    R12-SR: # SR-1 (ASBR)
+    R12-SR: # SR-1 (ABR)
       kind: nokia_srsim
       type: sr-1
       startup-config: ./startup_config/R12-SR.partial.txt

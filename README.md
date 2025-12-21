@@ -14,8 +14,8 @@ The lab consists of three main network layers:
 
 ### 2. **Core Network: SRv6 & RSVP Domain**
 - **R05-SR** to **R12-SR** (SR-1): Core routers forming the backbone with both SRv6 and RSVP enabled
-- **R05-SR** & **R06-SR**: ASBR (Autonomous System Border Routers) connecting RSVP to SRv6
-- **R11-SR** & **R12-SR**: ASBR connecting SRv6 to SRv6 access ring
+- **R05-SR** & **R06-SR**: ABR (Area Border Routers) connecting RSVP to SRv6
+- **R11-SR** & **R12-SR**: ABR connecting SRv6 to SRv6 access ring
 
 ### 3. **Access Ring 2: SRv6 Domain**
 - **R13-IXR** (IXR-R6d): SRv6 Access router with 100G QSFP28
@@ -48,7 +48,7 @@ The lab consists of three main network layers:
 - **SRv6**: Segment Routing over IPv6 for modern packet forwarding
 - **RSVP-TE**: Legacy traffic engineering protocol
 - **EVPN**: multi-instance service layer for RSVP and SRv6 interworking
-- **PW-switching**: PW switching for legacy deployment using a PW per domain stitched at the ASBR
+- **PW-switching**: PW switching for legacy deployment using a PW per domain stitched at the ABR
 - **gNMI**: Network configuration and telemetry
 - **Prometheus + Grafana**: Monitoring and visualization
 - **UPA**: prefix summarization for SRv6 locators including Unreachable Prefix Announcement (UPA)
@@ -148,24 +148,24 @@ This showcases how service providers can evolve their networks while maintaining
 - Use `docker exec -it tester2 bash` or `docker exec -it tester3 bash`
 ### 2. Inter-domain RSVP-based ELINE with PW-switching
 - epipe (T-LDP) R1-R14_3000
-- RSVP-based LSP/SDP per domain stitched at ASBR
-- Includes PW-redundancy from R01 to both ASBR R05/R06
+- RSVP-based LSP/SDP per domain stitched at ABR
+- Includes PW-redundancy from R01 to both ABR R05/R06
 - Connectivity test between tester1 (IP 192.168.0.1, VLAN 10) and tester14 (IP 192.168.0.14, VLAN 10)
 - Use `docker exec -it tester1 bash` or `docker exec -it tester14 bash`
 ### 3. Intra-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R13-R16_VPWS-SRv6
-- Summarization on ASBR nodes R11 and R12
+- Summarization on ABR nodes R11 and R12
 - Connectivity test between tester13 (IP 10.13.16.13, VLAN 1316) and tester16 (IP 10.13.16.16, VLAN 1316)
 - Use `docker exec -it tester13 bash` or `docker exec -it tester16 bash`
 ### 4. Inter-domain SRv6-based ELINE
 - epipe (BGP-EVPN) R05-R16_VPWS-SRv6
-- Summarization on ASBR nodes R11 and R12
+- Summarization on ABR nodes R11 and R12
 - Connectivity between tester5 (IP 10.5.16.5, VLAN 516) and tester16 (IP 10.5.16.16, VLAN 516)
 - Use `docker exec -it tester5 bash` or `docker exec -it tester16 bash`
 ### 5. Inter-domain RSVP to SRv6 ELINE
 - epipe R04-R13_VPWS-SRv6
-- RSVP-based LSP/SDP with T-LDP epipe on access ring 1 from R04 to both ASBR nodes R05/R06
-- SRv6 from ASBR nodes R05 and R06 to R13
+- RSVP-based LSP/SDP with T-LDP epipe on access ring 1 from R04 to both ABR nodes R05/R06
+- SRv6 from ABR nodes R05 and R06 to R13
 - Connecitivy between tester4 (IP 10.4.13.4, VLAN 413) and tester13 (IP 10.4.13.13, VLAN 413)
 - Use `docker exec -it tester4 bash` or `docker exec -it tester13 bash`
 
